@@ -204,7 +204,7 @@
     </div>
 
     <h2 class="section-title">Why Eldaem?</h2>
-    <div class="features">
+  <div class="features">
       <div class="feature-box">
         <h3>Minimal & Calm Design</h3>
         <p>A space that feels quiet, focused, and stress‑free.</p>
@@ -219,12 +219,97 @@
       </div>
     </div>
 
+    <div id="waitlist" class="waitlist" style="margin-top:40px;">
+      <h2>Join the Waiting List</h2>
+      <p>Leave your email to get notified when the new version launches.</p>
+      <form id="waitlist-form">
+        <input type="email" name="email" placeholder="Enter your email" required />
+        <br />
+        <button type="submit">Join</button>
+      </form>
+      <p id="waitlist-msg" style="color:#2b7a0b; display:none; margin-top:10px;"></p>
+    </div>
 
   </div>
 
   <footer>
     © 2025 Eldaem – All rights reserved
   </footer>
+
+  <script>
+    document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = e.target.email;
+      const email = (input.value || '').trim();
+      const msg = document.getElementById('waitlist-msg');
+      msg.style.display = 'none';
+      if (!email) return;
+
+      try {
+        const res = await fetch('/api/addWaitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          msg.style.color = '#2b7a0b';
+          msg.textContent = data.message || 'Thanks — you are on the list!';
+          msg.style.display = 'block';
+          e.target.reset();
+        } else {
+          msg.style.color = '#b91c1c';
+          msg.textContent = data.error || 'Failed — please try again.';
+          msg.style.display = 'block';
+        }
+      } catch (err) {
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Network error — please try again.';
+        msg.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+  <footer>
+    © 2025 Eldaem – All rights reserved
+  </footer>
+
+  <script>
+    document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = e.target.email;
+      const email = (input.value || '').trim();
+      const msg = document.getElementById('waitlist-msg');
+      msg.style.display = 'none';
+      if (!email) return;
+
+      try {
+        const res = await fetch('/api/addWaitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          msg.style.color = '#2b7a0b';
+          msg.textContent = data.message || 'Thanks — you are on the list!';
+          msg.style.display = 'block';
+          e.target.reset();
+        } else {
+          msg.style.color = '#b91c1c';
+          msg.textContent = data.error || 'Failed — please try again.';
+          msg.style.display = 'block';
+        }
+      } catch (err) {
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Network error — please try again.';
+        msg.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 </html>
