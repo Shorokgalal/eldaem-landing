@@ -3,8 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الداعم – أكمل أهدافك مع من يشبهونك</title>
+    <title>Eldaem – Achieve Your Goals with Like-Minded People</title>
   <style>
+    /* Soft fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.7s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Nicer screenshot cards */
+    .screenshot {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: 0.25s ease;
+    }
+    
+    .screenshot:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+    
+    /* Waitlist section */
+    .waitlist {
+      margin-top: 50px;
+      background: linear-gradient(135deg, #ffffff 0%, #f5f7fb 100%);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: 0.25s ease;
+    }
+    
+    .waitlist:hover {
+      box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    }
+    
+    /* Button glow */
+    button, .cta-button {
+      box-shadow: 0 4px 12px rgba(78,115,223,0.25);
+    }
+    
+    button:hover, .cta-button:hover {
+      box-shadow: 0 6px 18px rgba(78,115,223,0.35);
+      transform: translateY(-2px);
+    }
+
     body {
       margin: 0;
       font-family: sans-serif;
@@ -94,16 +147,6 @@
       font-size: 20px;
     }
 
-    /* Waiting list */
-    .waitlist {
-      margin-top: 50px;
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-
     input[type="email"] {
       padding: 12px;
       width: 80%;
@@ -150,13 +193,13 @@
     <h2 class="section-title" style="margin-top:60px;">See How It Works</h2>
     <div class="features" style="margin-top: 10px;">
       <div class="feature-box" style="padding: 0; background: none; box-shadow: none;">
-        <img src="screenshot1.png" alt="Screenshot 1" style="width: 100%; border-radius: 25px; border: 1px solid #ddd;">
+        <img src="images/screenshot1.png" class="screenshot fade-in" alt="Screenshot 1">
       </div>
       <div class="feature-box" style="padding: 0; background: none; box-shadow: none;">
-        <img src="screenshot2.png" alt="Screenshot 2" style="width: 100%; border-radius: 25px; border: 1px solid #ddd;">
+        <img src="images/screenshot2.png" class="screenshot fade-in" alt="Screenshot 2">
       </div>
       <div class="feature-box" style="padding: 0; background: none; box-shadow: none;">
-        <img src="screenshot3.png" alt="Screenshot 3" style="width: 100%; border-radius: 25px; border: 1px solid #ddd;">
+        <img src="images/screenshot3.png" class="screenshot fade-in" alt="Screenshot 3">
       </div>
     </div>
 
@@ -174,41 +217,17 @@
         <h3>Daily Micro‑Progress</h3>
         <p>Small updates every day help you stay consistent and motivated.</p>
       </div>
-
-      <div class="feature-box">
-        <h3>Minimal & Calm Design</h3>
-        <p>A space that feels quiet, focused, and stress‑free.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Supportive Community</h3>
-        <p>Join people who share goals like yours and cheer each other on.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Daily Micro‑Progress</h3>
-        <p>Small updates every day help you stay consistent and motivated.</p>
-      </div>
-
-      <div class="feature-box">
-        <h3>Minimal & Calm Design</h3>
-        <p>A space that feels quiet, focused, and stress‑free.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Supportive Community</h3>
-        <p>Join people who share goals like yours and cheer each other on.</p>
-      </div>
-      <div class="feature-box">
-        <h3>Daily Micro‑Progress</h3>
-        <p>Small updates every day help you stay consistent and motivated.</p>
-      </div>
     </div>
 
-    <div id="waitlist" class="waitlist">
+    <div id="waitlist" class="waitlist" style="margin-top:40px;">
       <h2>Join the Waiting List</h2>
       <p>Leave your email to get notified when the new version launches.</p>
-
-      <input type="email" placeholder="Enter your email" />
-      <br />
-      <button>Join</button>
+      <form id="waitlist-form">
+        <input type="email" name="email" placeholder="Enter your email" required />
+        <br />
+        <button type="submit">Join</button>
+      </form>
+      <p id="waitlist-msg" style="color:#2b7a0b; display:none; margin-top:10px;"></p>
     </div>
 
   </div>
@@ -216,6 +235,40 @@
   <footer>
     © 2025 Eldaem – All rights reserved
   </footer>
+
+  <script>
+    document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = e.target.email;
+      const email = (input.value || '').trim();
+      const msg = document.getElementById('waitlist-msg');
+      msg.style.display = 'none';
+      if (!email) return;
+
+      try {
+        const res = await fetch('/api/addWaitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          msg.style.color = '#2b7a0b';
+          msg.textContent = data.message || 'Thanks — you are on the list!';
+          msg.style.display = 'block';
+          e.target.reset();
+        } else {
+          msg.style.color = '#b91c1c';
+          msg.textContent = data.error || 'Failed — please try again.';
+          msg.style.display = 'block';
+        }
+      } catch (err) {
+        msg.style.color = '#b91c1c';
+        msg.textContent = 'Network error — please try again.';
+        msg.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 </html>
