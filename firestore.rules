@@ -1,12 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Allow anyone to add emails to waitlist
     match /waitlist/{docId} {
       allow create: if
         request.resource.data.keys().hasOnly(['email','createdAt']) &&
         request.resource.data.email is string &&
-        request.resource.data.email.size() <= 320;
-      allow read, update, delete: if false;
+        request.resource.data.email.size() > 0 &&
+        request.resource.data.email.size() <= 320 &&
+        request.resource.data.email.matches('.*@.*\\..*');
+      // Only you can read the emails (add your auth condition here later)
+      allow read: if false;
+      allow update, delete: if false;
     }
   }
 }

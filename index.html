@@ -236,76 +236,50 @@
     © 2025 Eldaem – All rights reserved
   </footer>
 
-  <script>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+
+    // TODO: Replace with your Firebase config from Firebase Console
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "your-app-id"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
     document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const input = e.target.email;
       const email = (input.value || '').trim();
       const msg = document.getElementById('waitlist-msg');
       msg.style.display = 'none';
-      if (!email) return;
-
-      try {
-        const res = await fetch('/api/addWaitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
-        });
-        const data = await res.json();
-        if (res.ok) {
-          msg.style.color = '#2b7a0b';
-          msg.textContent = data.message || 'Thanks — you are on the list!';
-          msg.style.display = 'block';
-          e.target.reset();
-        } else {
-          msg.style.color = '#b91c1c';
-          msg.textContent = data.error || 'Failed — please try again.';
-          msg.style.display = 'block';
-        }
-      } catch (err) {
+      
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         msg.style.color = '#b91c1c';
-        msg.textContent = 'Network error — please try again.';
+        msg.textContent = 'Please enter a valid email address.';
         msg.style.display = 'block';
+        return;
       }
-    });
-  </script>
-
-</body>
-</html>
-
-  <footer>
-    © 2025 Eldaem – All rights reserved
-  </footer>
-
-  <script>
-    document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const input = e.target.email;
-      const email = (input.value || '').trim();
-      const msg = document.getElementById('waitlist-msg');
-      msg.style.display = 'none';
-      if (!email) return;
 
       try {
-        const res = await fetch('/api/addWaitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
+        await addDoc(collection(db, 'waitlist'), { 
+          email: email, 
+          createdAt: serverTimestamp() 
         });
-        const data = await res.json();
-        if (res.ok) {
-          msg.style.color = '#2b7a0b';
-          msg.textContent = data.message || 'Thanks — you are on the list!';
-          msg.style.display = 'block';
-          e.target.reset();
-        } else {
-          msg.style.color = '#b91c1c';
-          msg.textContent = data.error || 'Failed — please try again.';
-          msg.style.display = 'block';
-        }
+        msg.style.color = '#2b7a0b';
+        msg.textContent = 'Thanks — you are on the list!';
+        msg.style.display = 'block';
+        e.target.reset();
       } catch (err) {
+        console.error('Error adding email:', err);
         msg.style.color = '#b91c1c';
-        msg.textContent = 'Network error — please try again.';
+        msg.textContent = 'Failed to save email. Please try again.';
         msg.style.display = 'block';
       }
     });
