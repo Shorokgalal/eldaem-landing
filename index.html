@@ -5,6 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>الداعم – أكمل أهدافك مع من يشبهونك</title>
   <style>
+    /* Soft fade-in animation */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeInUp 0.7s ease forwards;
+      }
+      
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Nicer screenshot cards */
+      .screenshot {
+        width: 100%;
+        border-radius: 22px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.25s ease;
+      }
+      
+      .screenshot:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      }
+      
+      /* Waitlist section */
+      .waitlist {
+        background: linear-gradient(135deg, #ffffff 0%, #f5f7fb 100%);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        transition: 0.25s ease;
+      }
+      
+      .waitlist:hover {
+        box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+      }
+      
+      /* Button glow */
+      button, .cta-button {
+        box-shadow: 0 4px 12px rgba(78,115,223,0.25);
+      }
+      
+      button:hover, .cta-button:hover {
+        box-shadow: 0 6px 18px rgba(78,115,223,0.35);
+        transform: translateY(-2px);
+      }
+
     body {
       margin: 0;
       font-family: sans-serif;
@@ -150,13 +199,13 @@
     <h2 class="section-title" style="margin-top:60px;">See How It Works</h2>
     <div class="features" style="margin-top: 10px;">
       <div class="feature-box" style="padding: 0; background: none; box-shadow: none;">
-  <img src="images/screenshot1.png" alt="Screenshot 1" style="width: 100%; border-radius: 25px; border: 1px solid #ddd;">
+  <img src="images/screenshot1.png" class="screenshot fade-in">
       </div>
       <div class="feature-box" style="padding: 0; background: none; box-shadow: none;">
-  <img src="images/screenshot2.png" alt="Screenshot 2" style="width: 100%; border-radius: 25px; border: 1px solid #ddd;">
+   <img src="images/screenshot2.png" class="screenshot fade-in">
       </div>
       <div class="feature-box" style="padding: 0; background: none; box-shadow: none;">
-  <img src="images/screenshot3.png" alt="Screenshot 3" style="width: 100%; border-radius: 25px; border: 1px solid #ddd;">
+   <img src="images/screenshot3.png" class="screenshot fade-in">
       </div>
     </div>
 
