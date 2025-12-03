@@ -99,6 +99,38 @@
       margin: 10px auto 30px auto;
       color: #444;
     }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .hero-text-block {
+      flex: 1;
+      min-width: 260px;
+    }
+    
+    .hero-image-block {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .hero-subtitle {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 25px;
+    }
+
 
     .cta-button {
       display: block;
@@ -190,8 +222,18 @@
 
   <div class="container">
 
-    <h1 style="font-size: 40px; font-weight: 700; margin-top: 20px;">Stay committed to your goals — simply</h1>
-    <p class="hero-text" style="font-size: 20px; color:#555;">A calm, minimal space where you share progress with people who uplift you — not overwhelm you.</p>
+    <div class="hero">
+      <div class="hero-text-block fade-in">
+        <h1 class="hero-title">Stay committed to your goals — simply</h1>
+        <p class="hero-subtitle">A calm, minimal space where you share progress with people who uplift you — not overwhelm you.</p>
+    
+        <a href="#waitlist" class="cta-button">Join the Waiting List</a>
+      </div>
+    
+      <div class="hero-image-block fade-in">
+        <img src="images/screenshot1.png" class="screenshot" style="max-width:280px;">
+      </div>
+    </div>
 
     <a href="#waitlist" class="cta-button">Join the Waiting List</a>
 
