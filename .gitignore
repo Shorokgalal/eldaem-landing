@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Node (in case tools get added)
+node_modules/
+npm-debug.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
