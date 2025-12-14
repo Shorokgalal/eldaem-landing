@@ -1,7 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow anyone to add emails to waitlist
+    // Allow anyone to add emails to waitlist (legacy)
     match /waitlist/{docId} {
       allow create: if
         request.resource.data.keys().hasOnly(['email','createdAt']) &&
@@ -9,9 +9,23 @@ service cloud.firestore {
         request.resource.data.email.size() > 0 &&
         request.resource.data.email.size() <= 320 &&
         request.resource.data.email.matches('.*@.*\\..*');
-      // Only you can read the emails (add your auth condition here later)
+      allow read: if false;
+      allow update, delete: if false;
+    }
+
+    // Allow anyone to subscribe to newsletter with optional WhatsApp
+    match /newsletter/{docId} {
+      allow create: if
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 0 &&
+        request.resource.data.email.size() <= 320 &&
+        request.resource.data.email.matches('.*@.*\\..*') &&
+        // WhatsApp is optional
+        (!request.resource.data.keys().hasAny(['whatsapp']) || 
+         request.resource.data.whatsapp is string);
       allow read: if false;
       allow update, delete: if false;
     }
   }
 }
+

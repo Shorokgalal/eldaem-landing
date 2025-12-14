@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eldaem – Achieve Your Goals with Like-Minded People</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #5B47DB;
+      --primary-dark: #4935C7;
+      --text-dark: #1a1a1a;
+      --text-gray: #666666;
+      --text-light: #999999;
+      --bg-light: #FAFAFA;
+      --border: #E5E5E5;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .header-cta {
+      padding: 12px 24px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .header-cta:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-gray);
+      margin-bottom: 32px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 32px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .cta-button:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Form Card */
+    .form-card {
+      background: var(--bg-light);
+      padding: 32px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .form-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .form-card > p {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .optional {
+      font-weight: 400;
+      color: var(--text-light);
+    }
+
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+    }
+
+    #newsletter-msg {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Section Container */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+    }
+
+    .section-header p {
+      font-size: 18px;
+      color: var(--text-gray);
+    }
+
+    .carousel-step {
+      display: none;
+      text-align: center;
+      min-height: 250px;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .carousel-step.active {
+      display: block;
+    }
+
+    .carousel-step h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .carousel-step p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.8;
+    }
+
+    .carousel-arrows {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .arrow-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.3);
+      font-size: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .arrow-btn:hover {
+      background: rgba(255,255,255,0.3);
+      border-color: rgba(255,255,255,0.5);
+      transform: scale(1.1);
+    }
+
+    .arrow-btn:disabled {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.1);
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .indicator.active {
+      background: white;
+      width: 36px;
+      border-radius: 6px;
+    }
+
+    /* Step icon */
+    .step-icon {
+      font-size: 72px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Screenshot cards */
+    .screenshot {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .screenshot:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content {
+      color: white;
+      animation: slideInLeft 0.8s ease;
+    }
+
+    .hero-content h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(to right, #fff, #e0e7ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-form-card {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      animation: slideInRight 0.8s ease;
+    }
+
+    .hero-form-card h3 {
+      font-size: 24px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .hero-form-card p {
+      color: var(--text-gray);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    /* Hero Image Placeholder */
+    .hero-image {
+      position: relative;
+      animation: slideInRight 0.8s ease;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      border-radius: 24px;
+      border: 2px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      animation: float 6s ease-in-out infinite;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    /* Newsletter section - simplified since it's in hero */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+      margin-top: 80px;
+    }
+
+    .cta-section h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .cta-section p {
+      font-size: 20px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+
+    .form-group {
+      margin: 20px 0;
+    }
+
+    .form-group label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 14px;
+    }
+
+    .optional {
+      font-weight: normal;
+      color: var(--text-gray);
+      font-size: 13px;
+    }
+    
+    /* Buttons */
+    button, .cta-button {
+      padding: 16px 32px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+      font-family: inherit;
+    }
+    
+    button:hover, .cta-button:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .cta-button-white {
+      background: white;
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button-white:hover {
+      background: rgba(255,255,255,0.95);
+      transform: translateY(-2px);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-cta {
+      padding: 12px 24px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .header-cta:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    .section-title {
+      font-size: 42px;
+      margin: 0 0 16px;
+      text-align: center;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      text-align: center;
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto 60px;
+      line-height: 1.7;
+    }
+
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .feature-box {
+      background: white;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: left;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .feature-box:hover {
+      box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+      transform: translateY(-8px);
+      border-color: var(--primary-light);
+    }
+
+    .feature-box h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .feature-box p {
+      color: var(--text-gray);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    input[type="email"],
+    input[type="tel"] {
+      padding: 14px 18px;
+      width: 100%;
+      margin: 5px 0;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+
+    input[type="email"]:focus,
+    input[type="tel"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-gray);
+      font-size: 14px;
+      margin-top: 80px;
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+
+    .info-section {
+      background: white;
+      padding: 48px 40px;
+      border-radius: 20px;
+      margin: 30px 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+
+    .info-section h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .info-section p {
+      color: var(--text-gray);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .info-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-section ul li {
+      padding: 12px 0;
+      padding-left: 36px;
+      position: relative;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+
+    .info-section ul li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .info-section ul li strong {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-content h1 {
+        font-size: 36px;
+      }
+
+      .hero-content p {
+        font-size: 17px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .carousel-container {
+        padding: 40px 24px;
+      }
+
+      .step-icon {
+        font-size: 56px;
+      }
+
+      header {
+        padding: 16px 20px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .container {
+        padding: 60px 20px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .info-section {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Eldaem</div>
+    <a href="https://app.eldaem.com" class="header-cta">Launch App →</a>
+  </header>
+
+  <!-- Hero Section with Form -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="fade-in">Achieve Your Goals with Accountability Partners</h1>
+        <p class="fade-in fade-in-delay-1">Join focused communities, track progress together, and stay motivated through shared commitment. Make this your most consistent year yet.</p>
+        <a href="https://app.eldaem.com" class="cta-button cta-button-white fade-in fade-in-delay-2">Start Your Journey →</a>
+      </div>
+
+      <div class="hero-form-card fade-in fade-in-delay-2">
+        <h3>Get Updates & Early Access</h3>
+        <p>Join our newsletter for success stories, tips, and feature updates</p>
+        <form id="newsletter-form">
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp <span class="optional">(optional for exclusive updates)</span></label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="+1234567890" />
+          </div>
+          <button type="submit" style="width: 100%;">Subscribe Now</button>
+        </form>
+        <p id="newsletter-msg" style="display:none; margin-top:16px; font-size:14px; font-weight:600;"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- How It Works Carousel -->
+    <h2 class="section-title">How Eldaem Works</h2>
+    <p class="section-subtitle">Follow these simple steps to join a community and start achieving your goals</p>
+
+    <div class="carousel-container">
+      <div class="carousel-step active" data-step="1">
+        <div class="step-icon">👥</div>
+        <h3>Step 1: Join a Group</h3>
+        <p>Browse public accountability groups or create your own. Find like-minded people working on similar goals — fitness, learning, habits, or any personal challenge.</p>
+      </div>
+
+      <div class="carousel-step" data-step="2">
+        <div class="step-icon">📝</div>
+        <h3>Step 2: Fill Your Profile</h3>
+        <p>Complete your profile with your goal, motivation, and commitment level. This helps your group understand your journey and support you better.</p>
+      </div>
+
+      <div class="carousel-step" data-step="3">
+        <div class="step-icon">⏰</div>
+        <h3>Step 3: Choose Your Schedule</h3>
+        <p>Join instantly and start today, or schedule your start date. Set check-in times that work for your routine — daily, weekly, or custom intervals.</p>
+      </div>
+
+      <div class="carousel-step" data-step="4">
+        <div class="step-icon">✅</div>
+        <h3>Step 4: Vote & Reflect</h3>
+        <p>Log your daily progress with a simple yes/no vote. Add reflections about what went well, challenges faced, and learnings. Build your consistency streak!</p>
+      </div>
+
+      <div class="carousel-step" data-step="5">
+        <div class="step-icon">💬</div>
+        <h3>Step 5: Engage with Your Community</h3>
+        <p>React to others' updates with encouragement. View the public group feed to see everyone's progress. Celebrate wins, share tips, and stay motivated together.</p>
+      </div>
+
+      <div class="carousel-arrows">
+        <button class="arrow-btn" id="prev-btn" disabled>↑</button>
+        <button class="arrow-btn" id="next-btn">↓</button>
+      </div>
+
+      <div class="carousel-indicators">
+        <span class="indicator active" data-step="1"></span>
+        <span class="indicator" data-step="2"></span>
+        <span class="indicator" data-step="3"></span>
+        <span class="indicator" data-step="4"></span>
+        <span class="indicator" data-step="5"></span>
+      </div>
+    </div>
+
+    <!-- Educational Sections -->
+    <div class="info-section">
+      <h3>🎯 Why Accountability Works</h3>
+      <p>Research shows that sharing your goals with others dramatically increases your success rate. When you commit publicly and report progress regularly, you're 65% more likely to achieve your objectives.</p>
+      <p>Eldaem creates a supportive environment where:</p>
+      <ul>
+        <li>Your peers expect updates, creating positive social pressure</li>
+        <li>Small daily actions compound into major transformations</li>
+        <li>Celebrating progress releases dopamine, reinforcing good habits</li>
+        <li>Shared struggles normalize challenges and reduce giving up</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <h3>🌟 Perfect For These Goals</h3>
+      <ul>
+        <li><strong>Fitness & Health:</strong> Workout routines, weight loss, meditation, sleep schedules</li>
+        <li><strong>Learning:</strong> Language practice, reading challenges, skill development, online courses</li>
+        <li><strong>Creative Projects:</strong> Writing daily, art practice, music, side projects</li>
+        <li><strong>Career Growth:</strong> Job search accountability, networking, professional development</li>
+        <li><strong>Habits:</strong> Journaling, gratitude practice, no social media, early wake-ups</li>
+        <li><strong>Personal Growth:</strong> Therapy homework, relationship goals, financial discipline</li>
+      </ul>
+    </div>
+
+    <!-- Screenshots Section -->
+    <h2 class="section-title">See Eldaem in Action</h2>
+    <p class="section-subtitle">Real screenshots from inside the app</p>
+    <div class="features">
+      <div style="padding: 0; background: none; box-shadow: none; border: none;">
+        <img src="images/screenshot1.png" class="screenshot" alt="Join groups and track progress">
+      </div>
+      <div style="padding: 0; background: none; box-shadow: none; border: none;">
+        <img src="images/screenshot2.png" class="screenshot" alt="Daily check-ins and reflections">
+      </div>
+      <div style="padding: 0; background: none; box-shadow: none; border: none;">
+        <img src="images/screenshot3.png" class="screenshot" alt="Community support and reactions">
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 80px;">Why Choose Eldaem?</h2>
+    <p class="section-subtitle">Everything you need to stay accountable and achieve your goals</p>
+  <div class="features">
+      <div class="feature-box">
+        <h3>🧘 Minimal & Calm Design</h3>
+        <p>No overwhelming feeds or notifications. A focused, peaceful space designed for consistency, not distraction.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🤝 Supportive Community</h3>
+        <p>Join people who share goals like yours. Give and receive encouragement in a judgment-free zone.</p>
+      </div>
+      <div class="feature-box">
+        <h3>📊 Track Your Streak</h3>
+        <p>Visual progress tracking and streak counters keep you motivated. Watch your consistency improve week after week.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🔒 Private or Public</h3>
+        <p>Choose your comfort level. Join public groups for broader support or create private groups with friends.</p>
+      </div>
+      <div class="feature-box">
+        <h3>⚡ Quick Check-Ins</h3>
+        <p>Daily updates take seconds. Just vote yes/no and optionally add a reflection. No lengthy forms or complicated tracking.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🎉 Celebrate Together</h3>
+        <p>Milestones, streaks, and achievements are highlighted. Your community celebrates your wins with you.</p>
+    </div>
+
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Transform Your Goals into Reality?</h2>
+    <p>Join thousands already achieving their goals with Eldaem</p>
+    <a href="https://app.eldaem.com" class="cta-button cta-button-white">Launch Eldaem App →</a>
+  </section>
+
+  <footer>
+    © 2025 Eldaem – All rights reserved<br>
+    Your accountability partner for achieving any goal
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+    import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDr2XSTmdtMA1LD8UEv39HVYuZTf8AAbHo",
+      authDomain: "timeisnow-b3923.firebaseapp.com",
+      projectId: "timeisnow-b3923",
+      storageBucket: "timeisnow-b3923.firebasestorage.app",
+      messagingSenderId: "85315532113",
+      appId: "1:85315532113:web:14339f7e6ebbc7177b4f70",
+      measurementId: "G-TBKYVW61SD"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Carousel functionality
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    function updateCarousel() {
+      // Hide all steps
+      document.querySelectorAll('.carousel-step').forEach(step => {
+        step.classList.remove('active');
+      });
+      
+      // Show current step
+      document.querySelector(`.carousel-step[data-step="${currentStep}"]`).classList.add('active');
+      
+      // Update indicators
+      document.querySelectorAll('.indicator').forEach(indicator => {
+        indicator.classList.remove('active');
+      });
+      document.querySelector(`.indicator[data-step="${currentStep}"]`).classList.add('active');
+      
+      // Update buttons
+      document.getElementById('prev-btn').disabled = currentStep === 1;
+      document.getElementById('next-btn').disabled = currentStep === totalSteps;
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateCarousel();
+      }
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateCarousel();
+      }
+    });
+
+    // Click indicators to jump to step
+    document.querySelectorAll('.indicator').forEach(indicator => {
+      indicator.addEventListener('click', () => {
+        currentStep = parseInt(indicator.getAttribute('data-step'));
+        updateCarousel();
+      });
+    });
+
+    // Newsletter form submission
+    document.getElementById('newsletter-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = e.target.email;
+      const whatsappInput = e.target.whatsapp;
+      const email = (emailInput.value || '').trim();
+      const whatsapp = (whatsappInput.value || '').trim();
+      const msg = document.getElementById('newsletter-msg');
+      msg.style.display = 'none';
+      
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.style.color = 'var(--error)';
+        msg.textContent = 'Please enter a valid email address.';
+        msg.style.display = 'block';
+        return;
+      }
+
+      try {
+        const data = { 
+          email: email, 
+          createdAt: serverTimestamp() 
+        };
+        
+        // Add WhatsApp if provided
+        if (whatsapp) {
+          data.whatsapp = whatsapp;
+        }
+
+        await addDoc(collection(db, 'newsletter'), data);
+        msg.style.color = 'var(--success)';
+        msg.textContent = '🎉 Thanks for subscribing! We\'ll keep you updated.';
+        msg.style.display = 'block';
+        e.target.reset();
+      } catch (err) {
+        console.error('Error adding subscriber:', err);
+        msg.style.color = 'var(--error)';
+        msg.textContent = 'Failed to subscribe. Please try again.';
+        msg.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>
