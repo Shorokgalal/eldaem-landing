@@ -494,6 +494,99 @@
         padding: 60px 24px;
       }
     }
+
+    /* FAQ Section */
+    .faq-grid {
+      display: grid;
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--primary);
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      color: var(--primary);
+    }
+
+    .faq-icon {
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 24px;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 24px 20px 24px;
+    }
+
+    /* Feedback Section */
+    .feedback-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 32px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    #feedback-msg {
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -662,6 +755,128 @@
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section class="section" style="background: var(--bg-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about Eldaem</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How does Eldaem work?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Eldaem helps you achieve your goals through accountability. You join or create a group focused on a specific goal, check in daily with simple yes/no votes, share reflections, and support others in your community. The social commitment and regular check-ins dramatically increase your success rate.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Is Eldaem free to use?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes! Eldaem offers a free tier that includes joining public groups, daily check-ins, and community features. Premium features like private groups and advanced analytics are available with paid plans.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I join multiple groups?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely! You can join as many groups as you want. Many users track multiple goals simultaneously - like fitness, learning a language, and building a side project - each in their own dedicated group.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What if I miss a day?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Don't worry! Eldaem is designed to support your journey, not punish imperfection. If you miss a day, your streak resets, but all your progress and history remain. You can start fresh the next day with the same supportive community backing you.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How do I create my own group?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Creating a group is simple! In the app, tap "Create Group", set your goal and description, choose whether it's public or private, and set check-in schedules. You can invite friends directly or let people discover your public group.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Is my data private and secure?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We take privacy seriously. Your personal reflections are only visible to your group members. We use industry-standard encryption and never sell your data. You can delete your account and all associated data at any time.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What types of goals work best on Eldaem?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Eldaem works great for any goal that benefits from daily or regular practice: fitness routines, learning skills, creative projects, habit formation, professional development, and personal growth. The key is consistency, which accountability makes much easier.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I use Eldaem on mobile and desktop?</span>
+          <span class="faq-icon">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes! Eldaem is a responsive web app that works seamlessly on all devices - phones, tablets, and desktop computers. Check in from wherever you are, whenever it's convenient.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2>We'd Love Your Feedback</h2>
+      <p>Help us improve Eldaem by sharing your thoughts</p>
+    </div>
+
+    <div class="feedback-card">
+      <form id="feedback-form">
+        <div class="form-group">
+          <label for="feedback-email">Email Address *</label>
+          <input type="email" id="feedback-email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="feedback-type">Feedback Type</label>
+          <select id="feedback-type" name="type" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 15px; font-family: inherit;">
+            <option value="suggestion">Suggestion</option>
+            <option value="bug">Bug Report</option>
+            <option value="question">Question</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="feedback-message">Your Feedback *</label>
+          <textarea id="feedback-message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+        </div>
+        <button type="submit">Send Feedback</button>
+      </form>
+      <p id="feedback-msg" style="display:none;"></p>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="cta-section">
     <h2>Ready to Transform Your Goals into Reality?</h2>
@@ -772,6 +987,69 @@
         msg.style.display = 'block';
       }
     });
+
+    // Feedback form submission
+    document.getElementById('feedback-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = e.target.email;
+      const typeInput = e.target.type;
+      const messageInput = e.target.message;
+      const email = (emailInput.value || '').trim();
+      const type = typeInput.value;
+      const message = (messageInput.value || '').trim();
+      const msg = document.getElementById('feedback-msg');
+      msg.style.display = 'none';
+      
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.style.color = '#ef4444';
+        msg.textContent = 'Please enter a valid email address.';
+        msg.style.display = 'block';
+        return;
+      }
+
+      if (!message || message.length < 10) {
+        msg.style.color = '#ef4444';
+        msg.textContent = 'Please provide more detailed feedback (at least 10 characters).';
+        msg.style.display = 'block';
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, 'feedback'), {
+          email: email,
+          type: type,
+          message: message,
+          createdAt: serverTimestamp()
+        });
+        msg.style.color = '#10b981';
+        msg.textContent = '🎉 Thank you for your feedback! We appreciate it.';
+        msg.style.display = 'block';
+        e.target.reset();
+      } catch (err) {
+        console.error('Error submitting feedback:', err);
+        msg.style.color = '#ef4444';
+        msg.textContent = 'Failed to submit feedback. Please try again.';
+        msg.style.display = 'block';
+      }
+    });
+  </script>
+
+  <script>
+    // FAQ toggle function
+    function toggleFaq(element) {
+      const faqItem = element.parentElement;
+      const wasActive = faqItem.classList.contains('active');
+      
+      // Close all FAQs
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Open clicked FAQ if it wasn't active
+      if (!wasActive) {
+        faqItem.classList.add('active');
+      }
+    }
   </script>
 
 </body>

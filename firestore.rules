@@ -26,6 +26,21 @@ service cloud.firestore {
       allow read: if false;
       allow update, delete: if false;
     }
+
+    // Allow anyone to submit feedback
+    match /feedback/{docId} {
+      allow create: if
+        request.resource.data.email is string &&
+        request.resource.data.email.size() > 0 &&
+        request.resource.data.email.size() <= 320 &&
+        request.resource.data.email.matches('.*@.*\\..*') &&
+        request.resource.data.type is string &&
+        request.resource.data.message is string &&
+        request.resource.data.message.size() >= 10 &&
+        request.resource.data.message.size() <= 2000;
+      allow read: if false;
+      allow update, delete: if false;
+    }
   }
 }
 
